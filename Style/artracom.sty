@@ -32,6 +32,16 @@
 %- this part adds normal packages
 \RequirePackage{chemfig}% draw 2D chemical structures
 \RequirePackage[version=4]{mhchem}% typeset chemical formulae [mhchem|chemformula]
+%- packages for tables
+\RequirePackage{booktabs,threeparttable,longtable}
+\RequirePackage{multicol}
+\RequirePackage{multirow}
+%- extra math packages
+\RequirePackage{amsfonts}
+% - the XeLaTeX logo
+\RequirePackage{metalogo}
+%- provide a simpler way to change item number style in enumerate
+%\RequirePackage{enumerate}
 %- this part adds packages that should be loaded at the very end
 \AtEndPreamble{%
     %\RequirePackage{cleveref}% clever cross-referencing

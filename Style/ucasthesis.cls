@@ -577,6 +577,8 @@
     \def\proofname{\ucas@label@en@proofname}
     \def\@title{\ucas@value@en@titlemark}
     \def\@author{\ucas@value@en@author}
+    \def\progname{\ucas@label@en@progname}
+    \def\listprogname{\ucas@label@en@listprogname}
 \else
     \def\contentsname{\ucas@label@ch@tocname}
     \def\listfigurename{\ucas@label@ch@lsfigname}
@@ -599,6 +601,8 @@
     \def\proofname{\ucas@label@ch@proofname}
     \def\@title{\ucas@value@ch@titlemark}
     \def\@author{\ucas@value@ch@author}
+    \def\progname{\ucas@label@ch@progname}
+    \def\listprogname{\ucas@label@ch@listprogname}
 \fi
 %---------------------------------------------------------------------------%
 %->> Structure layout
