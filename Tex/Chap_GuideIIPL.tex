@@ -25,7 +25,7 @@
 \section{对基础模板的调整}
 
 \subsection{字体}
-在原模板关于英文字体和数学字体的设置中，若发现系统中存在开源的XITS字体（XITS-Regular.otf，一般会包含在几大主流 \LaTeX{} 发行版中），
+在基础模板关于英文字体和数学字体的设置中，若发现系统中存在开源的XITS字体（XITS-Regular.otf，一般会包含在几大主流 \LaTeX{} 发行版中），
 则将所有英文字体都设置为XITS，但XITS字体作为英文衬线字体（serif font）和数学字体的一种开源替代品，本身只是一种times字体，
 原模板强行将英文非衬线字体（sans-serif font）、等宽（mono）或打字机（typewrite）字体
 都设置成XITS这种times字体，这显然不符合英文排版基本规则。而且用times字体排版那些需要使用等宽字体的内容（典型的如计算机代码等）既不美观又不利于阅读。
@@ -36,9 +36,18 @@
 因为 \XeLaTeX{} 对中文编码、字体及中英文混排的支持要比 pdfLaTeX 好太多。
 另外需要注意的一点是，强烈建议在所使用的文本编辑工具中将文字编码设置为UTF-8（在Sublime Text 3和TeXstudio中均为默认编码格式），以免不必要的麻烦。
 
-对于中文字体，模版已经预设好了大部分格式排版所对应的中文字体，例如章节标题为黑体、正文为宋体，配合英文的\textbf{加粗Text}使用宋体伪粗体（需要进一步改进）、
-\textit{斜体Text}使用楷体、\texttt{等宽Text}使用仿宋体等。
-同时，模版预定义了4种常用中文字体，可在撰写正文时随意切换，分别是：{\songti 宋体}、{\heiti 黑体}、{\kaishu 楷书}、{\fangsong 仿宋}。
+对于中文字体，基础模版已经预设好了大部分格式排版所对应的中文字体，例如章节标题为黑体、正文为宋体，配合英文的\textbf{加粗Text}使用宋体伪粗体、
+\textit{斜体Text}使用楷体、\texttt{等宽Text}使用仿宋体等。基础模板使用“伪粗体（\texttt{AutoFakeBold}）”的方式定义中文宋体和黑体的粗体字型，
+这种方式本质上就是将文字横向以微小位移重复显示多次而呈现出加粗效果，即使在计算机中文字体设计很不规范、缺少对应变化字型的年代，
+这也是一种不被推荐的折衷方案，不仅效果差强人意，而且会对生成的pdf文件中的文字拷贝造成困扰。
+因此，建议使用比较新的中文开源字体：由Adobe和Google联合开发的\href{https://github.com/adobe-fonts}{思源字体}
+（加载文档类\texttt{ucasthesis}时加上参数“\texttt{fontset=none}”）。即使不使用这种方式，也应修改字体配置，去掉\texttt{AutoFakeBold}选项，
+而代之以其他替代字体（例如用Microsoft Office软件一般都会捆绑安装的“华文中宋”字体作为宋体的粗体）。
+
+另外，修改后的模版为“\texttt{fontset=none}”选项补充定义了4种常用中文字体，方便撰写正文时快速切换字体，
+分别是：{\songti 宋体}、{\heiti 黑体}、{\kaishu 楷书}、{\fangsong 仿宋}。
+
+关于在 \LaTeX{} 中使用中英文字体的基础常识及相关设置方法可参考：\href{https://stone-zeng.github.io/2018-08-08-use-opentype-fonts/}{在 \LaTeX{} 中使用 OpenType 字体}。
 
 \section{撰写样例}\label{sec:samples}
 
@@ -422,14 +431,16 @@ z = \left\{
 
 \subsection{文献引用}\label{sec:samples:cite}
 模板提供了一组源自natbib包的引用命令用于不同风格的引用习惯：
-
-{
-\renewcommand{\arraystretch}{0.8}
+\begin{center}
+\renewcommand{\arraystretch}{1.0}
 \begin{tabular}{lcl}
 \verb|\citet{wikibook2014latex}| & $\Rightarrow$ & \citet{wikibook2014latex} \\
-\verb|\citet[chap. 2]{wikibook2014latex}| & $\Rightarrow$ & \citet[chap. 2]{wikibook2014latex} 
+\verb|\citet[第2章]{wikibook2014latex}| & $\Rightarrow$ & \citet[第2章]{wikibook2014latex} \\
+\verb|\citep{wikibook2014latex}| & $\Rightarrow$ & \citep{wikibook2014latex} \\
+\verb|\citep[第2章]{wikibook2014latex}| & $\Rightarrow$ & \citep[第2章]{wikibook2014latex} \\
+\verb|\citep[see][第2章]{wikibook2014latex}| & $\Rightarrow$ & \citep[见][第2章]{wikibook2014latex}
 \end{tabular}
-}
+\end{center}
 
 对参考文献的引用使用 \ltxcmdname{cite} 命令，其参数为bib文件中为每一篇参考文献定义的唯一的标识（关键字），即每一个参考文献项的第一个字段。本模版同样预定义了两个命令 \ltxcmdname{scite} 和 \ltxcmdname{upcite}，用于生成不同位置的文献引用标注，此处文献\citetns{wikibook2014latex}是句中引用（文献本身是句子成分之一），这是句末（上标，文献不是句子成分之一，仅表示名词或句子来自哪篇文献）引用\upcite{wikibook2014latex}。
 

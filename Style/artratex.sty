@@ -323,7 +323,7 @@
     %! If you have to use it, be sure only set it for roman (serif) font and math roman font.
     %! Because XITS is essentially a times font (a kind of serif fonts), it is an open source alternative to
     %! roman (serif) fonts and does not meet the needs of other fonts, such as sans-serif and typewriter (mono) fonts.
-    \IfFontExistsTF{NoXITS-Regular.otf}{%
+    \IfFontExistsTF{XITS-Regular.otf}{%
     \RequirePackage{unicode-math}% unicode font configuration <XITS|STIX2>
     \def\boldsymbol#1{\symbfit{#1}}% treat obsoleteness
     \providecommand{\Vector}[1]{\symbfit{#1}}% general vectors in bold italic
@@ -429,7 +429,7 @@
             AutoFakeBold=2.5,
         ]%
         \setCJKmonofont{AdobeFangsongStd-Regular}%
-        \setCJKfamilyfont{zhsong}{AdobeSongStd-Light%
+        \setCJKfamilyfont{zhsong}{AdobeSongStd-Light}%
         \setCJKfamilyfont{zhhei}{AdobeHeitiStd-Regular}%
         \setCJKfamilyfont{zhkai}{AdobeKaitiStd-Regular}%
         \setCJKfamilyfont{zhfs}{AdobeFangsongStd-Regular}%
@@ -441,25 +441,29 @@
     %- LaTeX distribution
     %- With path: fontspec will treat the given string as font filename and use kpathsea to
     %- search the font filename in path, and extension is optional but recommended in this case
-        \setCJKmainfont{AdobeSongStd-Light}[%
+        \setCJKmainfont{SourceHanSerifSC}[%
             Path=\artx@fontdir,
             Extension=.otf,
-            AutoFakeBold=2.5,
+            UprightFont=*-Regular,
+            %AutoFakeBold=2.5,
+            BoldFont=*-Bold,
             ItalicFont=AdobeKaitiStd-Regular,
         ]%
-        \setCJKsansfont{AdobeHeitiStd-Regular}[%
+        \setCJKsansfont{SourceHanSansSC}[%
             Path=\artx@fontdir,
             Extension=.otf,
-            AutoFakeBold=2.5,
+            UprightFont=*-Regular,
+            %AutoFakeBold=2.5,
+            BoldFont=*-Bold,
         ]%
         \setCJKmonofont{AdobeFangsongStd-Regular}[%
             Path=\artx@fontdir,
             Extension=.otf,
         ]%
-        \setCJKfamilyfont{zhsong}{AdobeSongStd-Light%
-        \setCJKfamilyfont{zhhei}{AdobeHeitiStd-Regular}%
-        \setCJKfamilyfont{zhkai}{AdobeKaitiStd-Regular}%
-        \setCJKfamilyfont{zhfs}{AdobeFangsongStd-Regular}%
+        \setCJKfamilyfont{zhsong}{SourceHanSerifSC-Regular.otf}[Path=\artx@fontdir]%
+        \setCJKfamilyfont{zhhei}{SourceHanSansSC-Regular.otf}[Path=\artx@fontdir]%
+        \setCJKfamilyfont{zhkai}{AdobeKaitiStd-Regular.otf}[Path=\artx@fontdir]%
+        \setCJKfamilyfont{zhfs}{AdobeFangsongStd-Regular.otf}[Path=\artx@fontdir]%
     \fi\fi\fi\fi
     \providecommand*{\songti}{\CJKfamily{zhsong}} % 宋体
     \providecommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
@@ -474,7 +478,7 @@
   {}%                                     % Space below
   {}%                                     % Body font
   {}%                                     % Indent amount
-  {\bf\heiti}%                                  % Theorem head font
+  {\bf}%                                  % Theorem head font
   {.}%                                    % Punctuation after theorem head
   { }%                                    % Space after theorem head, ' ', or \newline
   {}%                                     % Theorem head spec (can be left empty, meaning `normal')
