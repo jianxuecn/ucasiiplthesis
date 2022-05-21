@@ -182,33 +182,33 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
     \label{fig:c06h06_trim}
 \end{figure}
 
-多图的插入如图~\ref{fig:oaspl}，多图不应在子图中给文本子标题，只要给序号，并在主标题中进行引用说明。
+多图的插入如图~\ref{fig:oaspl}，多图应在子图中给文本子标题，主标题尽量简洁，详细说明在正文中给出。子图的引用：图\ref{fig:oaspl_a}。
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_a}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_a}
     \end{subfigure}%
     ~% add desired spacing
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_b}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_b}
     \end{subfigure}
     \\% line break
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_c}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_c}
     \end{subfigure}%
     ~% add desired spacing
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_d}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_d}
     \end{subfigure}
-    \bicaption{总声压级。(a) 这是子图说明信息，(b) 这是子图说明信息，(c) 这是子图说明信息，(d) 这是子图说明信息。}{OASPL.(a) This is the explanation of subfig, (b) This is the explanation of subfig, (c) This is the explanation of subfig, (d) This is the explanation of subfig.}
+    \bicaption{总声压级}{OASPL}
     \label{fig:oaspl}
 \end{figure}
 

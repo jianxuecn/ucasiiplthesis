@@ -588,7 +588,12 @@
 %-
 \RequirePackage{graphicx}% packages for including graphics
 \RequirePackage[format=plain,hangindent=2.0em,font={small,bf},skip=8pt,labelsep=space]{caption}% options: [margin=10pt,labelfont=bf]
+
 \RequirePackage{subcaption}% package for subfigures
+%- change subfigure reference to the style: 1(a)
+\captionsetup[subfigure]{labelformat=simple}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
 \RequirePackage[list=off]{bicaption}% package for binary captions
 \DeclareCaptionOption{bi-first}[]{}% 1st language
 \DeclareCaptionOption{bi-second}[]{% 2nd language

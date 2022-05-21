@@ -52,7 +52,7 @@
 \section{撰写样例}\label{sec:samples}
 
 \subsection{列表}
-\LaTeX 用于列表的环境有三种：\texttt{itemize}、\texttt{enumerate}和\texttt{description}。
+\LaTeX{} 用于列表的环境有三种：\texttt{itemize}、\texttt{enumerate}和\texttt{description}。
 
 无序列举：
 \begin{itemize}
@@ -118,8 +118,8 @@ A=\int_0^1 \frac{\ln{x}}{x}\dif x
 
 带编号的数学公式组（注意利用列分隔符“\texttt{\&}”对齐）：
 \begin{align}
-{\cal M}ˆ2(\hat{\theta},\theta) &= E[(\hat{\theta} - \theta)ˆ2] \\
-{\cal M}ˆ2(\hat{\theta},\theta) &= \textrm{var}ˆ2(\hat{\theta}) + {\cal B}ˆ2(\hat{\theta})
+\mathcal{M}^2(\hat{\theta},\theta) &= E[(\hat{\theta} - \theta)^2] \\
+\mathcal{M}^2(\hat{\theta},\theta) &= \operatorname{var}^2(\hat{\theta}) + {\cal B}^2(\hat{\theta})
 \end{align}
 
 \textbf{特别注意：}此处应避免使用 \ltxenvname{eqnarray} 环境，因为此环境存在很多问题，且与\ltxenvname{amsmath}宏包风格不统一，
@@ -182,16 +182,31 @@ z = \left\{
 \right)
 \end{equation}
 
-正文中对公式的引用：公式~\eqref{eq:samples:one}。
+正文中对公式的引用一律使用\ltxcmdname{eqref}命令输出带括号的公式编号，例如：公式~\eqref{eq:samples:one}。
+
+关于数学公式的特别提示：
+\begin{enumerate}
+  \item \textbf{多字母的函数或算子名称表示要规范}：多字母的函数或算子名称在~\LaTeX{}中有专门的排版方式，一些常用的已经定义了专门的命令，
+        例如\ltxcmdname{sin}、\ltxcmdname{max}、\ltxcmdname{log}等，对于一些\ltxenvname{amsmath}包中未定义的函数，一定要在数学环境中用\ltxcmdname{operatorname}命令括起来，
+        例如：\ltxcmdname{operatorname\{softmax\}(A)}就显示为$\operatorname{softmax}(A)$，这和在数学环境中用\ltxcmdname{text}（显示为$\text{softmax}(A)$）或
+        直接写（显示为$softmax(A)$）都有差别，后者尤为错误。
+  \item \textbf{尽量不要使用多字母变量}：在数学环境中直接输出多字母变量会产生歧义，数学环境中默认的排版规则认为每一个英文字母都是一个单独的变量，在字符间距的处理上有特殊的考虑，
+        若直接输入多字母变量，则各个字母间会分得比较开，例如：$Ver_i$，读者容易看成$V$、$e$和$r_i$的乘积，因此数学公式中要避免使用多字母变量。
+        在这里，一条重要的原则是：数学公式要经过一定的提炼和抽象，不要直接从程序代码翻译，即不要在数学公式的表达中带入写程序的习惯。\label{enum:mathtips:1}
+  \item \textbf{不同类型的数学符号尽量用不同的字体表示}：不同类型的数学符号用不同类型的字体表示有利于增加公式的辨识度，使读者更易理解，例如矩阵和向量一般用粗体，
+        $\mathbf{Ax}=\mathbf{b}$就比$Ax=b$含义更明确。
+  \item \textbf{用有意义的单词做变量上下标时单词要放在文本环境中}：有时候为了表达更简洁明了，会在变量的上标或下标用单词表示某些特殊含义，例如$A_\text{max}$，
+        此时，用来表达特殊含义的单词务必放在\ltxcmdname{text}命令中，理由同~\ref{enum:mathtips:1}。
+\end{enumerate}
 
 \subsection{插图}
-为了能得到较好的排版效果，又不必做调整图形位置的乏味工作，\LaTeX 提供了一个浮动图形机制来自动将图形放置到合适的位置。为了使这一机制发挥最大效力，在写作时需注意以下几点：
+为了能得到较好的排版效果，又不必做调整图形位置的乏味工作，\LaTeX{} 提供了一个浮动图形机制来自动将图形放置到合适的位置。为了使这一机制发挥最大效力，在写作时需注意以下几点：
 \begin{enumerate}
 	\item \textbf{不要使用依赖于图形放置位置的文本}：使用如“\emph{这幅图…}”或“\emph{下图…}”等短语要求所指图形需在固定位置，
-	      而像“{\kaishu 图1.1…}”这样的短语则允许图形出现在任意位置，而且配合\LaTeX 提供的强大的交叉引用功能，
+	      而像“{\kaishu 图1.1…}”这样的短语则允许图形出现在任意位置，而且配合\LaTeX{} 提供的强大的交叉引用功能，
 	      完全可以自动生成插图编号并建立超链接。
-	\item \textbf{放轻松}：一些刚开始使用\LaTeX 的作者发现图形没有十分准确地出现在他们所想要的位置，往往会着急，并对其进行手工干预，
-	      这其实完全没有必要，图形的放置是\LaTeX 的工作，最好放轻松一些，到所有内容都撰写校对完成，最后再对插图位置作必要微调。
+	\item \textbf{放轻松}：一些刚开始使用\LaTeX{} 的作者发现图形没有十分准确地出现在他们所想要的位置，往往会着急，并对其进行手工干预，
+	      这其实完全没有必要，图形的放置是\LaTeX{} 的工作，最好放轻松一些，到所有内容都撰写校对完成，最后再对插图位置作必要微调。
 	      如果你的论文结构合理，正文内容完整充实，此时你会发现插图都已在该在的位置上，没有调整的必要了。
 \end{enumerate}
 
@@ -203,7 +218,7 @@ z = \left\{
 	\item[\texttt{p}（浮动页）] 将插图放置在只允许有浮动对象的页面上
 \end{description}
 
-通常给出的参数越多，\LaTeX 的排版效果越好，例如\texttt{[htbp]}、\texttt{[tbp]}、\texttt{[htp]}、\texttt{[tp]}等组合的效果都不错。另外，在这些位置参数前面加上一个惊叹号（例如\texttt{[!ht]}）会使\LaTeX 忽略应用于文本页的审美条件，试图用最严格的标准来放置浮动图形。
+通常给出的参数越多，\LaTeX{} 的排版效果越好，例如\texttt{[htbp]}、\texttt{[tbp]}、\texttt{[htp]}、\texttt{[tp]}等组合的效果都不错。另外，在这些位置参数前面加上一个惊叹号（例如\texttt{[!ht]}）会使\LaTeX{} 忽略应用于文本页的审美条件，试图用最严格的标准来放置浮动图形。
 
 \figref{fig:samples:coordinateaxis}是单幅插图的例子。
 
@@ -238,7 +253,7 @@ z = \left\{
   \caption{块体分类}\label{fig:samples:blcfy}
 \end{figure}
 
-特别注意，模版支持多种常用插图文件格式，比如\texttt{pdf}、\texttt{png}、\texttt{jpg}、\texttt{tif}等，在用\ltxcmdname{includegraphics}命令引入插图文件时，文件名可以不包含扩展名，\LaTeX 会自行匹配，这样做的好处是当你用另一种更好的文件格式提供同一幅插图时（比如用效果更好的矢量图格式\texttt{pdf}代替原来不够清晰的\texttt{jpg}文件），直接替换插图文件即可，正文中不需要做任何更改。
+特别注意，模版支持多种常用插图文件格式，比如\texttt{pdf}、\texttt{png}、\texttt{jpg}、\texttt{tif}等，在用\ltxcmdname{includegraphics}命令引入插图文件时，文件名可以不包含扩展名，\LaTeX{} 会自行匹配，这样做的好处是当你用另一种更好的文件格式提供同一幅插图时（比如用效果更好的矢量图格式\texttt{pdf}代替原来不够清晰的\texttt{jpg}文件），直接替换插图文件即可，正文中不需要做任何更改。
 
 \subsection{表格}\label{sec:tab}
 表格和插图一样，建议使用浮动对象，即将表格放在浮动对象环境\texttt{table}中，例如\tabref{tab:samples:normal}。但是也有一些例外，例如跨页的长表格\texttt{longtable}（\tabref{tab:samples:longtable}），由于不受页面长度限制，所以不必放在浮动对象中，放进去反而会出错。
@@ -423,7 +438,7 @@ z = \left\{
 \end{definition}
 
 \subsection{交叉引用}
-理论上在文档的任何位置都可以设置交叉引用点，常用的有：特定章节、图、表、公式等。为被引用对象建立交叉引用点的方法是在相应位置使用 \ltxcmdname{label}命令设置一个标签，在需要引用的地方用 \ltxcmdname{ref} 命令建立引用链接，其参数就是前面所设置的标签名称。例如：参见 \ref{sec:samples} 节。由于引用链接只输出\LaTeX 为标签自动生成的编号，所以一般要在 \ltxcmdname{ref} 命令的前后配上相应文字，如“图”、“表”、“公式”等。为省去此琐碎环节，本模版预定义了一些固定的引用模式供大家使用，如：章节引用\secref{sec:samples}、插图引用\figref{fig:samples:blcfy}、表格引用\tabref{tab:samples:normal}、算法引用\algref{alg:euclid}、代码引用\codref{lst:samples:pas}、定理引用\thmref{thm:samples:t}、公理引用\axmref{thm:samples:a}、引理引用\lemref{thm:samples:l}、命题引用\prpref{thm:samples:p}、定义引用\defref{thm:samples:d}等。
+理论上在文档的任何位置都可以设置交叉引用点，常用的有：特定章节、图、表、公式等。为被引用对象建立交叉引用点的方法是在相应位置使用 \ltxcmdname{label}命令设置一个标签，在需要引用的地方用 \ltxcmdname{ref} 命令建立引用链接，其参数就是前面所设置的标签名称。例如：参见 \ref{sec:samples} 节。由于引用链接只输出\LaTeX{} 为标签自动生成的编号，所以一般要在 \ltxcmdname{ref} 命令的前后配上相应文字，如“图”、“表”、“公式”等。为省去此琐碎环节，本模版预定义了一些固定的引用模式供大家使用，如：章节引用\secref{sec:samples}、插图引用\figref{fig:samples:blcfy}、表格引用\tabref{tab:samples:normal}、算法引用\algref{alg:euclid}、代码引用\codref{lst:samples:pas}、定理引用\thmref{thm:samples:t}、公理引用\axmref{thm:samples:a}、引理引用\lemref{thm:samples:l}、命题引用\prpref{thm:samples:p}、定义引用\defref{thm:samples:d}等。
 
 另外，还可以使用 \ltxcmdname{pageref}引用对象所在页码，例如：\figref{fig:samples:blcfy}在第 \pageref{fig:samples:blcfy} 页。
 
@@ -439,7 +454,7 @@ z = \left\{
 \verb|\citet[第2章]{wikibook2014latex}| & $\Rightarrow$ & \citet[第2章]{wikibook2014latex} \\
 \verb|\citep{wikibook2014latex}| & $\Rightarrow$ & \citep{wikibook2014latex} \\
 \verb|\citep[第2章]{wikibook2014latex}| & $\Rightarrow$ & \citep[第2章]{wikibook2014latex} \\
-\verb|\citep[see][第2章]{wikibook2014latex}| & $\Rightarrow$ & \citep[见][第2章]{wikibook2014latex}
+\verb|\citep[见][第2章]{wikibook2014latex}| & $\Rightarrow$ & \citep[见][第2章]{wikibook2014latex}
 \end{tabular}
 \end{center}
 
