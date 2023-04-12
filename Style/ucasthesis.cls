@@ -655,7 +655,7 @@
 \ctexset {
     appendix = {
         %numbering = true|false,
-        %number = \rmfamily\Alph{chapter},
+        %number = \sffamily\bfseries\chinese{chapter},
     }
 }
 %---------------------------------------------------------------------------%
