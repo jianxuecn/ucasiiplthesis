@@ -1,3 +1,5 @@
+%!TEX root = ../Thesis.tex
+%!Mode:: "TeX:UTF-8"
 \chapter{\LaTeX{}使用说明}\label{chap:guide}
 
 为方便使用及更好地展示\LaTeX{}排版的优秀特性，ucasthesis的框架和文件体系进行了细致地处理，尽可能地对各个功能和板块进行了模块化和封装，对于初学者来说，众多的文件目录也许一开始让人觉得有些无所适从，但阅读完下面的使用说明后，会发现原来使用思路是简单而清晰的，而且，当对\LaTeX{}有一定的认识和了解后，会发现其相对Word类排版系统极具吸引力的优秀特性。所以，如果是初学者，请不要退缩，请稍加尝试和坚持，以领略到\LaTeX{}的非凡魅力，并可以通过阅读相关资料如\LaTeX{} Wikibook \citep{wikibook2014latex} 来完善自己的使用知识。
@@ -81,7 +83,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 比如Navier-Stokes方程（方程~\eqref{eq:ns}）：
 \begin{equation} \label{eq:ns}
-    \adddotsbeforeeqnnum%
+    %\adddotsbeforeeqnnum%
     \begin{cases}
         \frac{\partial \rho}{\partial t} + \nabla\cdot(\rho\Vector{V}) = 0 \ \mathrm{times\ math\ test: 1,2,3,4,5}, 1,2,3,4,5\\
         \frac{\partial (\rho\Vector{V})}{\partial t} + \nabla\cdot(\rho\Vector{V}\Vector{V}) = \nabla\cdot\Tensor{\sigma} \ \text{times text test: 1,2,3,4,5}\\
@@ -89,7 +91,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
     \end{cases}
 \end{equation}
 \begin{equation}
-    \adddotsbeforeeqnnum%
+    %\adddotsbeforeeqnnum%
     \frac{\partial }{\partial t}\int\limits_{\Omega} u \, \mathrm{d}\Omega + \int\limits_{S} \unitVector{n}\cdot(u\Vector{V}) \, \mathrm{d}S = \dot{\phi}
 \end{equation}
 \[
@@ -140,7 +142,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 请见表~\ref{tab:sample}。
 \begin{table}[!htbp]
-    \bicaption{这是一个样表。}{This is a sample table.}
+    \bicaption{这是一个样表}{This is a sample table}
     \label{tab:sample}
     \centering
     \footnotesize% fontsize
@@ -169,7 +171,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.40\textwidth]{c06h06}
-    \bicaption{Q判据等值面图，同时测试一下一个很长的标题，比如这真的是一个很长很长很长很长很长很长很长很长的标题。}{Isocontour of Q criteria, at the same time, this is to test a long title, for instance, this is a really very long very long very long very long very long title.}
+    \bicaption[Q判据等值面图]{Q判据等值面图，同时测试一下一个很长的标题，比如这真的是一个很长很长很长很长很长很长很长很长的标题。}[Isocontour of Q criteria]{Isocontour of Q criteria, at the same time, this is to test a long title, for instance, this is a really very long very long very long very long very long title.}
     \label{fig:c06h06}
 \end{figure}
 
@@ -178,37 +180,37 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
     \centering
     %trim option's parameter order: left bottom right top
     \includegraphics[trim = 60mm 80mm 60mm 60mm, clip, width=0.40\textwidth]{c06h06}
-    \bicaption{激波圆柱作用。}{Shock-cylinder interaction.}
+    \bicaption{激波圆柱作用}{Shock-cylinder interaction}
     \label{fig:c06h06_trim}
 \end{figure}
 
-多图的插入如图~\ref{fig:oaspl}，多图不应在子图中给文本子标题，只要给序号，并在主标题中进行引用说明。
+多图的插入如图~\ref{fig:oaspl}，多图应在子图中给文本子标题，主标题尽量简洁，详细说明在正文中给出。子图的引用：图\ref{fig:oaspl_a}。
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_a}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_a}
     \end{subfigure}%
     ~% add desired spacing
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_b}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_b}
     \end{subfigure}
     \\% line break
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_c}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_c}
     \end{subfigure}%
     ~% add desired spacing
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_d}
-      \caption{}
+      \caption{子图说明}
       \label{fig:oaspl_d}
     \end{subfigure}
-    \bicaption{总声压级。(a) 这是子图说明信息，(b) 这是子图说明信息，(c) 这是子图说明信息，(d) 这是子图说明信息。}{OASPL.(a) This is the explanation of subfig, (b) This is the explanation of subfig, (c) This is the explanation of subfig, (d) This is the explanation of subfig.}
+    \bicaption{总声压级}{OASPL}
     \label{fig:oaspl}
 \end{figure}
 
@@ -296,7 +298,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
     \item 设置文档样式: 在artratex.sty中搜索关键字定位相应命令，然后修改
         \begin{enumerate}
-            \item 正文行距：启用和设置 \verb|\linespread{1.5}|，默认1.5倍行距。
+            \item 正文行距系数：启用和设置 \verb|\linespread{1.35}|，相当于行距为1.62倍字体高度，大致相当于Word模板所要求的小四号宋体1.25倍行距。
             \item 参考文献行距：修改 \verb|\setlength{\bibsep}{0.0ex}|
             \item 目录显示级数：修改 \verb|\setcounter{tocdepth}{2}|
             \item 文档超链接的颜色及其显示：修改 \verb|\hypersetup|

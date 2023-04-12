@@ -130,7 +130,7 @@
 %- specifies the amount of space between paragraphs.
 \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %- line spacing
-\linespread{1.6}% line space setting
+\linespread{1.35}% line space setting
 \raggedbottom% prevent adding vertical white space in strange places
 %- default pagestyle is page number at bottom without headers and footers
 \pagestyle{plain}
@@ -577,6 +577,8 @@
     \def\proofname{\ucas@label@en@proofname}
     \def\@title{\ucas@value@en@titlemark}
     \def\@author{\ucas@value@en@author}
+    \def\progname{\ucas@label@en@progname}
+    \def\listprogname{\ucas@label@en@listprogname}
 \else
     \def\contentsname{\ucas@label@ch@tocname}
     \def\listfigurename{\ucas@label@ch@lsfigname}
@@ -599,6 +601,8 @@
     \def\proofname{\ucas@label@ch@proofname}
     \def\@title{\ucas@value@ch@titlemark}
     \def\@author{\ucas@value@ch@author}
+    \def\progname{\ucas@label@ch@progname}
+    \def\listprogname{\ucas@label@ch@listprogname}
 \fi
 %---------------------------------------------------------------------------%
 %->> Structure layout

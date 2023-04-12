@@ -1,3 +1,4 @@
+%!TEX program = xelatex
 %---------------------------------------------------------------------------%
 %-                                                                         -%
 %-                           LaTeX Template                                -%
@@ -11,7 +12,7 @@
 %---------------------------------------------------------------------------%
 %->> Document class declaration
 %---------------------------------------------------------------------------%
-\documentclass[twoside]{Style/ucasthesis}%
+\documentclass[twoside,fontset=none]{Style/ucasthesis}%
 %- Multiple optional arguments:
 %- [<oneside|twoside|print>]% oneside eprint, twoside eprint, or paper print
 %- [fontset=<adobe|none|...>]% specify font set instead of automatic detection
@@ -21,7 +22,7 @@
 %---------------------------------------------------------------------------%
 %->> Document settings
 %---------------------------------------------------------------------------%
-\usepackage[authoryear,list]{Style/artratex}% document settings
+\usepackage[numbers,list,lscape]{Style/artratex}% document settings
 %- usage: \usepackage[option1,option2,...,optionN]{artratex}
 %- Multiple optional arguments:
 %- [bibtex|biber]% set bibliography processor and package
