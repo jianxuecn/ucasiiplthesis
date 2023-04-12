@@ -115,6 +115,28 @@
 %-> Add dots before equation number
 %-
 \newcommand{\adddotsbeforeeqnnum}{\def\maketag@@@##1{\hbox{\m@th\normalfont\dots\ ##1}}}%
+%-
+%- Change the style of equation, figure, table numbering
+%-
+%\numberwithin{equation}{chapter}% set enumeration level
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}% configure the label style
+%\numberwithin{figure}{chapter}% set enumeration level
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}% configure the label style
+%\numberwithin{table}{chapter}% set enumeration level
+\renewcommand{\thetable}{\thechapter-\arabic{table}}% configure the label style
+%-
+%- Adjust some caption styles according to the requirements of UCAS
+%-
+\captionsetup{singlelinecheck=false,justification=centering}
+%-
+%-> Adjust enumerate styles
+%-
+\ifartx@list% enhanced list and verbatim structures enabled
+    \setlist[enumerate,1]{label=(\arabic*), ref=(\arabic*)}
+    \setlist[enumerate,2]{label=(\alph*), ref=(\theenumi-\alph*)}
+    \setlist[enumerate,3]{label=(\roman*), ref=(\theenumii-\alph*)}
+\fi
+
 %---------------------------------------------------------------------------%
 \endinput
 

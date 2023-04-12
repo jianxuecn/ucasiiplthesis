@@ -24,16 +24,16 @@
 
 \section{对基础模板的调整}
 
-\subsection{字体}
+%\subsection{字体}
 在基础模板关于英文字体和数学字体的设置中，若发现系统中存在开源的XITS字体（XITS-Regular.otf，一般会包含在几大主流 \LaTeX{} 发行版中），
-则将所有英文字体都设置为XITS，但XITS字体作为英文衬线字体（serif font）和数学字体的一种开源替代品，本身只是一种times字体，
+则会将所有英文字体都设置为XITS，这是一种不好的做法。因为XITS字体作为英文衬线字体（serif font）和数学字体的一种开源替代品，本身只是一种times字体，
 原模板强行将英文非衬线字体（sans-serif font）、等宽（mono）或打字机（typewrite）字体
 都设置成XITS这种times字体，这显然不符合英文排版基本规则。而且用times字体排版那些需要使用等宽字体的内容（典型的如计算机代码等）既不美观又不利于阅读。
 因此，此处建议对其进行调整。最简单的做法是直接停用XITS字体，将artratex.sty文件中的“XITS-Regular.otf”改成“NoXITS-Regular.otf”，
 使得 \LaTeX{} 找不到该文件而使相关设置失效。如果不得不用XITS字体，则至少在artratex.sty文件中将设置英文非衬线字体和等宽字体的部分注释掉。
 
 关于中文编码和字体，最新的\LaTeX{} 发行版（例如TeX Live 2020等）的支持已经非常完善，但是建议编译时使用 \XeLaTeX{} （\texttt{xelatex}）作为编译引擎，
-因为 \XeLaTeX{} 对中文编码、字体及中英文混排的支持要比 pdfLaTeX 好太多。
+因为 \XeLaTeX{} 对中文编码、字体及中英文混排的支持要比 pdfLaTeX 强太多。
 另外需要注意的一点是，强烈建议在所使用的文本编辑工具中将文字编码设置为UTF-8（在Sublime Text 3和TeXstudio中均为默认编码格式），以免不必要的麻烦。
 
 对于中文字体，基础模版已经预设好了大部分格式排版所对应的中文字体，例如章节标题为黑体、正文为宋体，配合英文的\textbf{加粗Text}使用宋体伪粗体、
@@ -203,10 +203,10 @@ z = \left\{
 为了能得到较好的排版效果，又不必做调整图形位置的乏味工作，\LaTeX{} 提供了一个浮动图形机制来自动将图形放置到合适的位置。为了使这一机制发挥最大效力，在写作时需注意以下几点：
 \begin{enumerate}
 	\item \textbf{不要使用依赖于图形放置位置的文本}：使用如“\emph{这幅图…}”或“\emph{下图…}”等短语要求所指图形需在固定位置，
-	      而像“{\kaishu 图1.1…}”这样的短语则允许图形出现在任意位置，而且配合\LaTeX{} 提供的强大的交叉引用功能，
+	      而像“{\kaishu 图1-1…}”这样的短语则允许图形出现在任意位置，而且配合\LaTeX{} 提供的强大的交叉引用功能，
 	      完全可以自动生成插图编号并建立超链接。
 	\item \textbf{放轻松}：一些刚开始使用\LaTeX{} 的作者发现图形没有十分准确地出现在他们所想要的位置，往往会着急，并对其进行手工干预，
-	      这其实完全没有必要，图形的放置是\LaTeX{} 的工作，最好放轻松一些，到所有内容都撰写校对完成，最后再对插图位置作必要微调。
+	      这其实完全没有必要，图形的放置是\LaTeX{} 的工作，最好放轻松一些，等所有内容都撰写校对完成，最后再对插图位置作必要微调。
 	      如果你的论文结构合理，正文内容完整充实，此时你会发现插图都已在该在的位置上，没有调整的必要了。
 \end{enumerate}
 
@@ -231,7 +231,7 @@ z = \left\{
 %                         ^                 ^
 %                插图宽度（相对于文本宽）  插图文件名（忽略扩展名）
 %% 插图标题（\label 用于设置建立交叉引用的标签名）
-\caption{平面的倾角、倾向及其法向矢量}\label{fig:samples:coordinateaxis}
+\bicaption{平面的倾角、倾向及其法向矢量}{Dip, dip direction and normal vector of a plane}\label{fig:samples:coordinateaxis}
 \end{figure}
 
 \figref{fig:samples:blcfy}是包含子图的例子，在\texttt{figure}环境中嵌套\texttt{subfigure}环境即可，参数格式类似，唯一不同的是\texttt{subfigure}不是一个浮动对象（被限制在\texttt{figure}中），因此其位置参数是指子图对齐的方式：\texttt{b}表示底部对齐，\texttt{t}表示顶部对齐。子图间可以用“\ltxcmdname{\textbackslash}”换行。
@@ -250,17 +250,24 @@ z = \left\{
       \includegraphics[width=\textwidth]{blockclassify1}
       \caption{平面示意图}\label{fig:samples:blockclassify1}
     \end{subfigure}
-  \caption{块体分类}\label{fig:samples:blcfy}
+  \bicaption{块体分类}{Block classification}\label{fig:samples:blcfy}
 \end{figure}
 
 特别注意，模版支持多种常用插图文件格式，比如\texttt{pdf}、\texttt{png}、\texttt{jpg}、\texttt{tif}等，在用\ltxcmdname{includegraphics}命令引入插图文件时，文件名可以不包含扩展名，\LaTeX{} 会自行匹配，这样做的好处是当你用另一种更好的文件格式提供同一幅插图时（比如用效果更好的矢量图格式\texttt{pdf}代替原来不够清晰的\texttt{jpg}文件），直接替换插图文件即可，正文中不需要做任何更改。
+
+另外，关于图表的标题，由于学校毕业论文模板要求同时给出中、英文标题，因此在排版图表标题时使用“\ltxcmdname{bicaption}”，其格式为：
+\begin{verbatim}
+  \bicaption[中文短标题]{中文标题}
+            [Short English title]{Title in English}
+\end{verbatim}
+其中，方括号中的可选参数为出现在目录等其他文档结构中的标题，当图表标题很长或者包含一些不宜出现在目录中的额外标记（如文献引用标注等）时，可使用该可选参数调整呈现在目录中的标题。
 
 \subsection{表格}\label{sec:tab}
 表格和插图一样，建议使用浮动对象，即将表格放在浮动对象环境\texttt{table}中，例如\tabref{tab:samples:normal}。但是也有一些例外，例如跨页的长表格\texttt{longtable}（\tabref{tab:samples:longtable}），由于不受页面长度限制，所以不必放在浮动对象中，放进去反而会出错。
 
 %% 普通表格
 \begin{table}[htbp]
-\caption{普通表格示例}\label{tab:samples:normal}
+\bicaption{普通表格示例}{Sample for the normal table}\label{tab:samples:normal}
 \centering
 \begin{tabular}{|>{\tt}c|>{\kaishu}l|>{\tt}l|>{\kaishu}l|}
 \hline
@@ -272,7 +279,7 @@ z = \left\{
 \end{tabular}
 \end{table}
 
-表格内容的输入则要比插图复杂一些，一般放在\texttt{tabular}环境中，也有的直接放在对应表格环境中（如\texttt{longtable}），列选项在表格环境参数重设置，不同的表格环境其内容大同小异。表格正文内容则一致以“\texttt{\&}”分列、以“\ltxcmdname{\textbackslash}”或“\ltxcmdname{tabularnewline}”断行。表格环境列布局的参数设置比较灵活，可以设定每一列的对齐方式（\texttt{l}、\texttt{r}或\texttt{c}，有几个就有几列）、字体（放在“\texttt{>}”后的大括号内）、是否加列间线（“\texttt{|}”）等（详细说明可参考\tabref{tab:samples:longtable}）。
+表格内容的输入则要比插图复杂一些，一般放在\texttt{tabular}环境中，也有的直接放在对应表格环境中（如\texttt{longtable}），列选项在表格环境参数中设置，不同的表格环境其内容大同小异。表格正文内容则一致以“\texttt{\&}”分列、以“\ltxcmdname{\textbackslash}”或“\ltxcmdname{tabularnewline}”换行。表格环境列布局的参数设置比较灵活，可以设定每一列的对齐方式（\texttt{l}、\texttt{r}或\texttt{c}，有几个就有几列）、字体（放在“\texttt{>}”后的大括号内）、是否加列间线（“\texttt{|}”）等（详细说明可参考\tabref{tab:samples:longtable}）。
 
 此外，还可以使用 \ltxcmdname{multirow}、\ltxcmdname{multicolumn}等命令合并单元格，例如\tabref{tab:samples:threepart}。
 \begin{enumerate}
@@ -300,7 +307,7 @@ z = \left\{
   \begin{threeparttable}
     \newcommand{\chengs}{\ensuremath{\times}}
     \newcommand{\cheng}{\ensuremath{\!\times\!}}
-    \caption{三线表及不规则单元格示例}\label{tab:samples:threepart}
+    \bicaption{三线表及不规则单元格示例}{Sample for the three-line table and irregular cells}\label{tab:samples:threepart}
     \begin{tabular}{cccc} %指定列数以及每列文字对齐方式：l 左对齐、r 右对齐、c 居中
       \toprule
   \multirow{2}{*}{策略}   & \multirow{2}{*}{尺寸参数}             & \multicolumn{2}{c}{数据量}    \tabularnewline \cmidrule{3-4}
@@ -318,13 +325,19 @@ z = \left\{
   \end{threeparttable}
 \end{table}
 
-\texttt{longtable}环境用于排版跨页长表，与普通表格不太一样，不能当做浮动对象，当它附近有较多浮动表格对象时有可能导致表格出现的顺序和生成的编号顺序不一致，因此如无必要，建议尽量少用跨页长表，过长的表可以作适当拆分。
+\texttt{longtable}环境用于排版跨页长表，与普通表格不太一样，不能当做浮动对象，当它附近有较多浮动表格对象时有可能导致表格出现的顺序和生成的编号顺序不一致，因此如无必要，建议尽量少用跨页长表，对于过长的表格应当进行适当的拆分。
 
 %% 跨页长表
 \begin{longtable}{|>{\tt}c|>{\kaishu}m{10cm}|}
-  \caption{跨页长表示例及表格列选项参数说明} \label{tab:samples:longtable}\\
+  \bicaption[跨页长表示例]{跨页长表示例及表格列选项参数说明}{Sample for the long table over multiple pages and description for the parameters} \label{tab:samples:longtable}\\
     \hline \heiti 选项参数 & \tc{\heiti 说明} \\ \endfirsthead %第一页上的表头
-  \caption{跨页长表示例及表格列选项参数说明（续）} \\
+  %% 出现在续页上的标题有两种排版方法（建议使用bicaption排版）：
+  % (1) 续页表格的标题、页码不出现在表格目录中，标题和表格纵向间距较小（可自行调整），注意用“\thetable”输出表格编号
+  %\multicolumn{2}{c}{\bfseries\small \tablename\ \thetable\ {跨页长表示例及表格列选项参数说明（续表）}} \\
+  %\multicolumn{2}{c}{\bfseries\small Table\ \thetable\ {Sample for the long table over multiple pages and description for the parameters (continued)}} \\
+  % (2) 使用常规caption或bicaption排版，标题、页码将出现在表格目录中
+  %\caption[跨页长表示例（续表）]{跨页长表示例及表格列选项参数说明（续表）} \\
+  \bicaption[跨页长表示例（续表）]{跨页长表示例及表格列选项参数说明（续表）}{Sample for the long table over multiple pages and description for the parameters (continued)} \\
     \hline \heiti 选项参数 & \tc{\heiti 说明} \\ \endhead %出现在续页上的表头
     \hline         l      & 该列单元格内容左对齐 \\
     \hline         c      & 该列单元格内容居中 \\
@@ -340,16 +353,29 @@ z = \left\{
     \hline
 \end{longtable}
 
+对于较宽的表格，可以使用“\ltxenvname{landscape}”环境按横排方式进行排版，如\tabref{tab:samples:landscapelongtable}所示，此表格也演示了在横排环境下的跨页长表排版。
+此外，跨页表格的标题与一般表格有所不同，需额外提供续表标题，排版格式如下：
+{\linespread{1.2}
+\begin{verbatim}
+  \bicaption[短标题]{标题}[Short title]{Title} \label{...} \\
+    \hline 列名1 & 列名2 & ... \\ \endfirsthead %第一页上的表头
+  \bicaption[短标题（续表）]{标题（续表）}
+            [Short title (continued)]{Title (continued)} \\
+    \hline 列名1 & 列名2 & ... \\ \endhead %出现在续页上的表头
+\end{verbatim}}
+
 \begin{landscape}% 横排页环境
 \pagestyle{lscape}% 横排页眉页脚样式
 \begin{longtable}{|>{\tt}c|>{\kaishu}m{10cm}|}
-  \bicaption[跨页长表示例]{跨页长表示例及表格列选项参数说明}{Sample for landscape-oriented table over multiple pages and description for the the parameters.} \label{tab:samples:landscapelongtable}\\
+  \bicaption[横排跨页长表示例]{横排跨页长表示例及表格列选项参数说明}{Sample for the landscape-oriented long table over multiple pages and description for the parameters} \label{tab:samples:landscapelongtable}\\
     \hline \heiti 选项参数 & \tc{\heiti 说明} \\ \endfirsthead %第一页上的表头
-    \multicolumn{2}{c}{\bfseries\small \tablename\ \thetable\ {续表。}} \\
-  %\caption{跨页长表示例及表格列选项参数说明（续表）} \\
+  %\multicolumn{2}{c}{\bfseries\small \tablename\ \thetable\ {横排跨页长表示例及表格列选项参数说明（续表）}} \\
+  %\multicolumn{2}{c}{\bfseries\small \tablename\ \thetable\ {Sample for the landscape-oriented long table over multiple pages and description for the parameters (continued)}} \\
+  %\caption[横排跨页长表示例]{横排跨页长表示例及表格列选项参数说明（续表）} \\
+  \bicaption[横排跨页长表示例（续表）]{横排跨页长表示例及表格列选项参数说明（续表）}{Sample for the landscape-oriented long table over multiple pages and description for the parameters (continued)} \\
     \hline \heiti 选项参数 & \tc{\heiti 说明} \\ \endhead %出现在续页上的表头
-    \hline \multicolumn{2}{r}{\textit{续表见下页}}\\ \endfoot %续表脚注
-    \endlastfoot %最后一页脚注
+    %\hline \multicolumn{2}{r}{\textit{续表见下页}}\\ \endfoot %续表脚注
+    %\endlastfoot %最后一页脚注
     \hline         l      & 该列单元格内容左对齐 \\
     \hline         c      & 该列单元格内容居中 \\
     \hline         r      & 该列单元格内容右对齐 \\
@@ -378,7 +404,7 @@ z = \left\{
   }
 \end{lstlisting}
 
-本模版预设按C++语法进行排版及关键字高亮显示，可以用环境参数中切换语言并作其他更细致的设定，例如 \texttt{[language=Pascal]} 将当前 \texttt{lstlisting} 环境切换为 Pascal 语言。同时，页可以通过参数设置将其变为浮动对象：\texttt{[float,caption=A floating example]}，如 \codref{lst:samples:pas} 所示。更详细的用法可参考 \texttt{listings} 宏包的说明文档（\texttt{listings.pdf}）。
+本模版预设按C++语法进行排版及关键字高亮显示，可以用环境参数中切换语言并作其他更细致的设定，例如 \texttt{[language=Pascal]} 将当前 \texttt{lstlisting} 环境切换为 Pascal 语言。同时，页可以通过参数设置将其变为浮动对象：\texttt{[float, caption=A floating example]}，如 \codref{lst:samples:pas} 所示。更详细的用法可参考 \texttt{listings} 宏包的说明文档（\texttt{listings.pdf}）。
 \begin{lstlisting}[float, language=Pascal, caption={浮动代码块}, label={lst:samples:pas}]
   var i:integer;
   var x:integer;
