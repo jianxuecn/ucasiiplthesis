@@ -9,7 +9,7 @@
 \newcommand*{\figref}[1]{图~\ref{#1}~}
 \newcommand*{\secref}[1]{~\ref{#1}~节}
 \newcommand*{\tabref}[1]{表~\ref{#1}~}
-%\newcommand*{\algref}[1]{算法~\ref{#1}~}
+\newcommand*{\algoref}[1]{算法~\ref{#1}~}
 \newcommand*{\codref}[1]{程序~\ref{#1}~}
 \newcommand*{\thmref}[1]{定理~\ref{#1}~}
 \newcommand*{\axmref}[1]{公理~\ref{#1}~}
@@ -464,7 +464,7 @@ z = \left\{
 \end{definition}
 
 \subsection{交叉引用}
-理论上在文档的任何位置都可以设置交叉引用点，常用的有：特定章节、图、表、公式等。为被引用对象建立交叉引用点的方法是在相应位置使用 \ltxcmdname{label}命令设置一个标签，在需要引用的地方用 \ltxcmdname{ref} 命令建立引用链接，其参数就是前面所设置的标签名称。例如：参见 \ref{sec:samples} 节。由于引用链接只输出\LaTeX{} 为标签自动生成的编号，所以一般要在 \ltxcmdname{ref} 命令的前后配上相应文字，如“图”、“表”、“公式”等。为省去此琐碎环节，本模版预定义了一些固定的引用模式供大家使用，如：章节引用\secref{sec:samples}、插图引用\figref{fig:samples:blcfy}、表格引用\tabref{tab:samples:normal}、算法引用\algref{alg:euclid}、代码引用\codref{lst:samples:pas}、定理引用\thmref{thm:samples:t}、公理引用\axmref{thm:samples:a}、引理引用\lemref{thm:samples:l}、命题引用\prpref{thm:samples:p}、定义引用\defref{thm:samples:d}等。
+理论上在文档的任何位置都可以设置交叉引用点，常用的有：特定章节、图、表、公式等。为被引用对象建立交叉引用点的方法是在相应位置使用 \ltxcmdname{label}命令设置一个标签，在需要引用的地方用 \ltxcmdname{ref} 命令建立引用链接，其参数就是前面所设置的标签名称。例如：参见 \ref{sec:samples} 节。由于引用链接只输出\LaTeX{} 为标签自动生成的编号，所以一般要在 \ltxcmdname{ref} 命令的前后配上相应文字，如“图”、“表”、“公式”等。为省去此琐碎环节，本模版预定义了一些固定的引用模式供大家使用，如：章节引用\secref{sec:samples}、插图引用\figref{fig:samples:blcfy}、表格引用\tabref{tab:samples:normal}、算法引用\algoref{alg:euclid}、代码引用\codref{lst:samples:pas}、定理引用\thmref{thm:samples:t}、公理引用\axmref{thm:samples:a}、引理引用\lemref{thm:samples:l}、命题引用\prpref{thm:samples:p}、定义引用\defref{thm:samples:d}等。
 
 另外，还可以使用 \ltxcmdname{pageref}引用对象所在页码，例如：\figref{fig:samples:blcfy}在第 \pageref{fig:samples:blcfy} 页。
 
