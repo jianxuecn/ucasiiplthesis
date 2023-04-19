@@ -40,6 +40,7 @@
 \RequirePackage{amsfonts}
 % - the XeLaTeX logo
 \RequirePackage{metalogo}
+\RequirePackage{afterpage}
 %- provide a simpler way to change item number style in enumerate
 %\RequirePackage{enumerate}
 %- this part adds packages that should be loaded at the very end
@@ -119,15 +120,70 @@
 %- Change the style of equation, figure, table numbering
 %-
 %\numberwithin{equation}{chapter}% set enumeration level
-\renewcommand{\theequation}{\thechapter-\arabic{equation}}% configure the label style
+%\renewcommand{\theequation}{\thechapter-\arabic{equation}}% configure the label style
 %\numberwithin{figure}{chapter}% set enumeration level
-\renewcommand{\thefigure}{\thechapter-\arabic{figure}}% configure the label style
+%\renewcommand{\thefigure}{\thechapter-\arabic{figure}}% configure the label style
 %\numberwithin{table}{chapter}% set enumeration level
-\renewcommand{\thetable}{\thechapter-\arabic{table}}% configure the label style
+%\renewcommand{\thetable}{\thechapter-\arabic{table}}% configure the label style
+%-
+%-> Custimize list environment
+%-
+\ifartx@list% enable enhanced list
+    % \thelstlisting is not defined until at \begin{document}.
+    % Find this information in texdoc listings-devel (http://mirrors.ctan.org/macros/latex/contrib/listings/listings-devel.pdf),
+    % the documented implementation of listings package, page 188.
+    \AtBeginDocument{%
+        \renewcommand*{\thelstlisting}{\thechapter-\arabic{lstlisting}}% configure the lstlisting (computer program) numbering style
+    }
+\fi
 %-
 %- Adjust some caption styles according to the requirements of UCAS
 %-
-\captionsetup{singlelinecheck=false,justification=centering}
+\captionsetup{singlelinecheck=false,justification=centering} %Make all captions centered, regardless of length.
+% somewhat ugly, not recommended. try to put the note (explanation) in the text.
+\providecommand{\fignote}[1]{
+  \begin{minipage}[t]{.85\linewidth}
+    \linespread{1.25}\rmfamily\zihao{5}
+    \textbf{\notename:}
+    \begin{minipage}[t]{\linewidth-1.5em}
+    #1
+    \end{minipage}
+  \end{minipage}
+}
+\providecommand{\fignoten}[2]{
+  \begin{minipage}[t]{.85\linewidth}
+    \linespread{1.25}\rmfamily\zihao{5}
+    \textbf{\notename #1:}
+    \begin{minipage}[t]{\linewidth-2em}
+    #2
+    \end{minipage}
+  \end{minipage}
+  \par
+}
+\providecommand{\tabnote}[1]{
+  \par
+  \vspace*{1ex}
+  \begin{minipage}[t]{.85\linewidth}
+    \linespread{1.25}\rmfamily\zihao{5}
+    \textbf{\notename:}
+    \begin{minipage}[t]{\linewidth-1.5em}
+    #1
+    \end{minipage}
+  \end{minipage}
+  \vspace{0.1ex}
+}
+\providecommand{\tabnoten}[2]{
+  \par
+  \vspace*{1ex}
+  \begin{minipage}[t]{.85\linewidth}
+    \linespread{1.25}\rmfamily\zihao{5}
+    \textbf{\notename #1:}
+    \begin{minipage}[t]{\linewidth-2em}
+    #2
+    \end{minipage}
+  \end{minipage}
+  \vspace{0.1ex}
+}
 %-
 %-> Adjust enumerate styles
 %-
